@@ -21,6 +21,7 @@ public class PollMiningApplication implements CommandLineRunner {
     CategoryService categoryService;
 
     public static void main(String[] args) {
+
         SpringApplication.run(PollMiningApplication.class, args);
     }
 

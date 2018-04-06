@@ -1,9 +1,7 @@
 package com.elrast.api.pollmining.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Category {
@@ -17,6 +15,11 @@ public class Category {
 
     @Column
     private long userId;
+
+
+    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "category")
+    @OneToMany
+    private Set<SubCategory> subCategories;
 
     public Category(String name, long userId) {
         this.name = name;
