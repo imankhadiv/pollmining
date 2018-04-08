@@ -2,16 +2,18 @@ package com.elrast.api.pollmining.repository;
 
 import com.elrast.api.pollmining.domain.Category;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RestResource;
 
+import java.util.Optional;
 
-public interface CategoryRepository extends PagingAndSortingRepository<Category, Long> {
+
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     boolean existsByName(String name);
+    Optional<Category> findCategoryByName(String name);
 
-    @Override
-    Iterable<Category> findAll(Sort sort);
 
     @Override
     @RestResource(exported = false)
@@ -33,7 +35,5 @@ public interface CategoryRepository extends PagingAndSortingRepository<Category,
     @RestResource(exported = false)
     <S extends Category> S save(S s);
 
-    @Override
-    @RestResource(exported = false)
-    <S extends Category> Iterable<S> saveAll(Iterable<S> iterable);
+
 }

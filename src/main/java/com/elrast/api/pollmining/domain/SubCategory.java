@@ -13,13 +13,13 @@ public class SubCategory {
     private boolean visibility;
     private String name;
 
-    @ManyToOne
+    @ManyToOne()
     private Category category;
 
-    public SubCategory(long id, long userId, @NotNull String name) {
-        this.id = id;
+    public SubCategory(long userId, @NotNull String name, Category category) {
         this.userId = userId;
         this.name = name;
+        this.category = category;
     }
 
     public SubCategory() {
@@ -31,5 +31,34 @@ public class SubCategory {
 
     public void setVisibility(boolean visibility) {
         this.visibility = visibility;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "SubCategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category=" + category +
+                '}';
     }
 }
