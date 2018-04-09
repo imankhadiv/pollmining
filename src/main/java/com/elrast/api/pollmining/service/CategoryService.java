@@ -4,9 +4,11 @@ package com.elrast.api.pollmining.service;
 import com.elrast.api.pollmining.domain.Category;
 import com.elrast.api.pollmining.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -34,9 +36,10 @@ public class CategoryService {
         return optionalCategory.orElseThrow(() -> new NoSuchElementException("Can't find category!"));
     }
 
-    public Iterable<Category> lookup() {
-        return categoryRepository.findAll();
+    public List<Category> lookup() {
+        return categoryRepository.findAll(Sort.by("name"));
     }
+
 
     public long total() {
         return categoryRepository.count();

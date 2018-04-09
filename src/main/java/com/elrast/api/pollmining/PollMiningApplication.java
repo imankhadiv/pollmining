@@ -51,10 +51,10 @@ public class PollMiningApplication implements CommandLineRunner {
         Category category = categoryService.findCategoryByName("Sport");
         Set<SubCategory> subs = category.getSubCategories();
 
-        categoryRepository.delete(category);
-
-        Iterable<SubCategory> subCategoryList = subCategoryService.lookup();
-        subCategoryList.forEach(System.out::print);
+//        categoryRepository.delete(category);
+//
+//        Iterable<SubCategory> subCategoryList = subCategoryService.lookup();
+//        subCategoryList.forEach(System.out::print);
 
 
 

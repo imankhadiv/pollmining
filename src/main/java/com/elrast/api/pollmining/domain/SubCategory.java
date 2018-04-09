@@ -1,13 +1,15 @@
 package com.elrast.api.pollmining.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.context.annotation.DependsOn;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @DependsOn()
-public class SubCategory {
+public class SubCategory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -17,6 +19,7 @@ public class SubCategory {
     private String name;
 
     @ManyToOne()
+    @JsonIgnore
     private Category category;
 
     public SubCategory(long userId, @NotNull String name, Category category) {

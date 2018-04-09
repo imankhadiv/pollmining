@@ -8,7 +8,10 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Sort;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -97,5 +100,20 @@ public class CategoryServiceTest {
         verify(categoryRepository).findById(1L);
 
     }
+
+    @Test
+    public void shouldGetSortedCategories() {
+        Category category1 = new Category();
+        category1.setName("B");
+        Category category2 = new Category();
+        category2.setName("A");
+        List<Category> mockedCategories = Arrays.asList(category1, category2);
+        when(categoryRepository.findAll(Sort.by("name"))).thenReturn(mockedCategories);
+
+        List<Category> categories = categoryService.lookup();
+        verify(categoryRepository).findAll(Sort.by("name"));
+        Assert.assertEquals(mockedCategories, categories);
+    }
+
 
 }
