@@ -2,6 +2,7 @@ package com.elrast.api.pollmining;
 
 import com.elrast.api.pollmining.domain.Category;
 import com.elrast.api.pollmining.domain.SubCategory;
+import com.elrast.api.pollmining.repository.CategoryRepository;
 import com.elrast.api.pollmining.service.CategoryService;
 import com.elrast.api.pollmining.service.SubCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class PollMiningApplication implements CommandLineRunner {
     @Autowired
     SubCategoryService subCategoryService;
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
     public static void main(String[] args) {
 
         SpringApplication.run(PollMiningApplication.class, args);
@@ -46,6 +50,12 @@ public class PollMiningApplication implements CommandLineRunner {
 
         Category category = categoryService.findCategoryByName("Sport");
         Set<SubCategory> subs = category.getSubCategories();
+
+        categoryRepository.delete(category);
+
+        Iterable<SubCategory> subCategoryList = subCategoryService.lookup();
+        subCategoryList.forEach(System.out::print);
+
 
 
 

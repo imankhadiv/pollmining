@@ -16,7 +16,7 @@ public class Category {
     @Column
     private long userId;
 
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "category")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "category")
     private Set<SubCategory> subCategories;
 
     public Category(String name, long userId) {
@@ -45,5 +45,9 @@ public class Category {
 
     public Set<SubCategory> getSubCategories() {
         return subCategories;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

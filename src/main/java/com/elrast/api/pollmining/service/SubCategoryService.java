@@ -20,4 +20,9 @@ public class SubCategoryService {
         SubCategory subCategory = new SubCategory(userId, subCategoryName, category);
         return subCategoryRepository.saveAndFlush(subCategory);
     }
+
+    public Iterable<SubCategory> lookup() {
+        return subCategoryRepository.findAll();
+    }
+
 }

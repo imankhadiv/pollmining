@@ -1,9 +1,12 @@
 package com.elrast.api.pollmining.domain;
 
+import org.springframework.context.annotation.DependsOn;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@DependsOn()
 public class SubCategory {
 
     @Id

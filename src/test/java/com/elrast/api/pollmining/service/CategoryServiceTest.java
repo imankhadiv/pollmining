@@ -74,4 +74,28 @@ public class CategoryServiceTest {
         verify(categoryRepository).findCategoryByName(CATEGORY1);
     }
 
+    @Test
+    public void shouldDeleteCategory() {
+
+        Category mockedCategory = new Category();
+        Optional<Category> optionalCategory = Optional.of(mockedCategory);
+        mockedCategory.setId(1L);
+        when(categoryRepository.findById(1L)).thenReturn(optionalCategory);
+
+        Category category = categoryService.delete(1L);
+        Assert.assertEquals(mockedCategory, category);
+        verify(categoryRepository).findById(1L);
+
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void shouldNotDeleteCategoryIfIdIsNotValid() {
+
+        when(categoryRepository.findById(1L)).thenThrow(NoSuchElementException.class);
+
+        categoryService.delete(1L);
+        verify(categoryRepository).findById(1L);
+
+    }
+
 }

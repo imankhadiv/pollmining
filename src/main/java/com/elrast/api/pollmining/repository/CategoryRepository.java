@@ -1,6 +1,7 @@
 package com.elrast.api.pollmining.repository;
 
 import com.elrast.api.pollmining.domain.Category;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -13,7 +14,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     boolean existsByName(String name);
     Optional<Category> findCategoryByName(String name);
-
 
     @Override
     @RestResource(exported = false)
