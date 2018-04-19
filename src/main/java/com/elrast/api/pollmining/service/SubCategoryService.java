@@ -6,6 +6,10 @@ import com.elrast.api.pollmining.repository.SubCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @Service
 public class SubCategoryService {
 
@@ -21,8 +25,13 @@ public class SubCategoryService {
         return subCategoryRepository.saveAndFlush(subCategory);
     }
 
-    public Iterable<SubCategory> lookup() {
+    public List<SubCategory> lookup() {
         return subCategoryRepository.findAll();
     }
 
+    public SubCategory delete(long subCategoryId) {
+        Optional<SubCategory> optionalSubCategory = subCategoryRepository.findById(subCategoryId);
+        optionalSubCategory.ifPresent(subCategory -> subCategoryRepository.delete(subCategory));
+        return optionalSubCategory.orElseThrow(() -> new NoSuchElementException("Can't find subcategory!"));
+    }
 }
