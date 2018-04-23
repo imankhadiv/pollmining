@@ -34,4 +34,8 @@ public class SubCategoryService {
         optionalSubCategory.ifPresent(subCategory -> subCategoryRepository.delete(subCategory));
         return optionalSubCategory.orElseThrow(() -> new NoSuchElementException("Can't find subcategory!"));
     }
+
+    public Optional<SubCategory> findById(long subCategoryId) {
+        return subCategoryRepository.findById(subCategoryId);
+    }
 }

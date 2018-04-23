@@ -6,6 +6,7 @@ import org.springframework.context.annotation.DependsOn;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @DependsOn()
@@ -18,9 +19,12 @@ public class SubCategory implements Serializable {
     private boolean visibility;
     private String name;
 
-    @ManyToOne()
+    @ManyToOne
     @JsonIgnore
     private Category category;
+
+    @OneToMany
+    private Set<Question> questionSet;
 
     public SubCategory(long userId, @NotNull String name, Category category) {
         this.userId = userId;

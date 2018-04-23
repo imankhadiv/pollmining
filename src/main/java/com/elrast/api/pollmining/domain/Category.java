@@ -20,6 +20,7 @@ public class Category implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "category")
     private Set<SubCategory> subCategories;
 
+
     public Category(String name, long userId) {
         this.name = name;
         this.userId = userId;
